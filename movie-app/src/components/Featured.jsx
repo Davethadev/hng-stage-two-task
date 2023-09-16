@@ -22,7 +22,6 @@ const Featured = () => {
       console.error(error);
     } finally {
       setLoading(false);
-      console.log(movies);
     }
   };
 
@@ -46,7 +45,7 @@ const Featured = () => {
         </div>
         <div className="mt-8">
           {loading ? (
-            <></>
+            <>Loading...</>
           ) : movies && movies.length === 0 ? (
             <>
               <p>No movies found</p>
