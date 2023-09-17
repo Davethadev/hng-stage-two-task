@@ -4,10 +4,14 @@ import imdb from "../assets/imdb.jpg";
 
 const Card = ({ title, poster, release_date }) => {
   const [favourite, setFavourite] = useState(false);
+  const handleFavourite = (e) => {
+    e.stopPropagation();
+    setFavourite(!favourite);
+  };
   return (
     <article data-testid="movie-card" className="relative">
-      <span
-        onClick={() => setFavourite(!favourite)}
+      <button
+        onClick={handleFavourite}
         className="absolute right-4 top-4 z-20 p-[4px] rounded-full bg-grey"
       >
         <svg
@@ -24,7 +28,7 @@ const Card = ({ title, poster, release_date }) => {
             fill={`${favourite ? "red" : "#D1D5DB"}`}
           />
         </svg>
-      </span>
+      </button>
       <div className="pb-2">
         <img
           data-testid="movie-poster"

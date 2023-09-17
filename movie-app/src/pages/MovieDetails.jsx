@@ -16,6 +16,8 @@ import logout from "../assets/logout.svg";
 import expand_arrow from "../assets/expand-arrow.svg";
 
 import Spinner from "../components/Spinner";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const MovieDetails = () => {
   let { id } = useParams();
@@ -121,8 +123,10 @@ const MovieDetails = () => {
             </li>
           </ul>
         </div>
-        <div className="w-5/6 px-2 md:px-8 pt-8">
-          {trailer ? (
+        <div className="w-full md:w-5/6 px-2 md:px-8 pt-8 relative">
+          {loading ? (
+            <Skeleton className="absolute h-[50vh] w-[250px]" />
+          ) : trailer ? (
             <iframe
               className="h-[50vh] w-auto"
               src={videoUrl}
@@ -153,7 +157,7 @@ const MovieDetails = () => {
               </span>
               • PG-13 •{" "}
               <span data-testid="movie-runtime">{movieDetails.runtime}m</span>
-              <span className="font-dmsans border-[1px] px-2 border-grey rounded-xl text-red-500 text-[12px]">
+              <span className="font-dmsans border-[1px] px-2 border-grey rounded-xl text-red-500 text-[12px] mx-4 md:mx-0">
                 Action
               </span>
               <span className="font-dmsans border-[1px] px-2 border-grey rounded-xl text-red-500 text-[12px]">
@@ -180,27 +184,27 @@ const MovieDetails = () => {
                   {movieDetails.overview}
                 </p>
                 <div className="mt-8">
-                  <p className="md:flex items-center gap-2 font-dmsans font-[500]">
+                  <p className="flex items-center gap-2 font-dmsans font-[500]">
                     Director:
                     <span className="text-rose font-[400]">
                       Joseph Kosinski
                     </span>
                   </p>
-                  <p className="md:flex items-center gap-2 font-dmsans my-8">
+                  <p className="flex items-center gap-2 font-dmsans my-8">
                     Writers:
                     <span className="text-rose font-[400]">
                       Jim Cash, Jack Epps Jr, Peter Craig
                     </span>
                   </p>
-                  <p className="md:flex items-center gap-2 font-dmsans">
-                    Stars :
+                  <p className="flex gap-2 font-dmsans">
+                    Stars:
                     <span className="text-rose font-[400]">
                       Tom Cruise, Jennifer Connelly, Miles Teller{" "}
                     </span>
                   </p>
                 </div>
                 <div className="border-[1px] border-grey rounded-lg flex items-center mt-8 w-full md:w-[80%]">
-                  <span className="bg-rose rounded w-[214px] h-full md:h-[30px] py-2 flex justify-center items-center text-white font-dmsans font-[500] text-[14px]">
+                  <span className="bg-rose rounded w-[214px] h-full md:h-[30px] py-2 flex justify-center items-center text-white font-dmsans font-[500] text-[14px] p-1">
                     Top rated movie #65
                   </span>
                   <div className="px-4 flex justify-between items-center w-full">
@@ -214,7 +218,7 @@ const MovieDetails = () => {
                 </div>
               </div>
             </div>
-            <div className="">
+            <div className="mt-2">
               <button className="flex bg-rose rounded h-[55px] w-full md:w-[360px] text-white flex justify-center items-center gap-4 font-dmsans font-[500] text-[14px]">
                 <span>
                   <img src={two_tickets} alt="" />
